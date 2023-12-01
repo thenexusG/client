@@ -1,0 +1,39 @@
+<div class="col-md-4 offset-md-2">
+    <div class="card">
+        <div class="card-body text-center">
+            <form>
+                <div class="form-group">
+                    <input type="text" name="nombre" placeholder="Nombre" [(ngModel)]="clothe.nombre" class="form-control" >
+                </div>
+                <div class="form-group">
+                    <input type="text" name="Talla" placeholder="Talla" [(ngModel)]="clothe.talla" class="form-control" >
+                </div>
+                <div class="form-group">
+                    <input type="number" name="cantidad_existente" placeholder="Cantidad existentes" [(ngModel)]="clothe.cantidad_existente" class="form-control" >
+                </div>
+                <div class="form-group">
+                    <input type="number" name="precio" placeholder="Precio" [(ngModel)]="clothe.precio" class="form-control" >
+                </div>
+                <br>
+                <div class="form-group">
+                    <input name="file" type="file" (change)="onFileSelected($event)" [ngModel]="clothe.imagen_base64">
+                </div>
+                <br>
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <button class="btn btn-success btn-block" (click)="edit == true ? updateGame() : saveNewGame()">
+                        Save
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="col-md">
+    <div class="card card-body text-center">
+        <img [src]="clothe.imagen_base64 == '' ? 'assets/defaultImage.jpg' : clothe.imagen_base64" class="card-img-top">
+        <h3>{{clothe.id}} - {{clothe.nombre == '' ? 'Prenda' : clothe.nombre}}</h3>
+        <p>{{clothe.categoria == '' ? 'Categoria' : clothe.categoria}}</p>
+        <p>{{clothe.precio == undefined ? 'Precio' : clothe.precio}}</p>
+    </div>
+</div> 
