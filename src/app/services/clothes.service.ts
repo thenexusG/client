@@ -34,4 +34,11 @@ export class ClothesService {
     return  this.http.post(`${this.API_URI}/articles`, article);
   }
 
+  removeQuantityExisting(id: string): Observable<any> {
+    return this.http.put(`${this.API_URI}/articles/existing/${id}`, {});
+  }
+
+  getClothesExisting(id: string){
+    return  this.http.get(`${this.API_URI}/articles/existing/${id}`);
+  }
 }

@@ -46,7 +46,7 @@ export class ClothesFormComponent implements OnInit {
     this.clothesService.saveClothe(this.clothe).subscribe(
       res => {
         console.log(res);
-        this.router.navigate(['/clothes']);
+        this.router.navigate(['/administrador/list']);
       },
       err => console.error(err)
     );
