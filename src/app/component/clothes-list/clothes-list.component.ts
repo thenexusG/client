@@ -39,8 +39,8 @@ export class ClothesListComponent implements OnInit {
   getClothesExisting(id: string): Observable<number> {
     return this.clothesService.getClothesExisting(id).pipe(
       map(res => {
-        this.cantExistente = res;
-        return this.cantExistente[0].cantidad_existente;
+        this.cantExistente = res;        
+        return this.cantExistente.cantidad_existente;
       })
     );
   }
