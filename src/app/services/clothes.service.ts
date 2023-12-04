@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class ClothesService {
 
-  API_URI = 'http://localhost:3000/api'
+  API_URI = 'https://tiendaonline-v6kq.onrender.com/api'
 
   constructor(private http: HttpClient) { }
 
