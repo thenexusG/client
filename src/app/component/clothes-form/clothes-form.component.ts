@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router'
 
 import { ClothesService } from '../../services/clothes.service'
 import { Clothes } from '../../models/clothes'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -11,6 +12,10 @@ import { Clothes } from '../../models/clothes'
   styleUrls: ['./clothes-form.component.css']
 })
 export class ClothesFormComponent implements OnInit {
+
+  myForm: FormGroup = this.formBuilder.group({
+    precio: [null, [Validators.required, Validators.min(0)]], 
+  });;
 
   @HostBinding('class') classes = 'row'
 
@@ -22,9 +27,10 @@ export class ClothesFormComponent implements OnInit {
   };
 
   edit: boolean = false;
+  submitted = false;
 
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private clothesService: ClothesService) { }
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private clothesService: ClothesService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     const params = this.activatedRoute.snapshot.params;
@@ -42,14 +48,17 @@ export class ClothesFormComponent implements OnInit {
 
   saveNewGame() {
     delete this.clothe.id;
+    this.submitted = true;
+    if (this.myForm.valid) {
+      this.clothesService.saveClothe(this.clothe).subscribe(
+        res => {
+          console.log(res);
+          this.router.navigate(['/administrador/list']);
+        },
+        err => console.error(err)
+      );
+    }
 
-    this.clothesService.saveClothe(this.clothe).subscribe(
-      res => {
-        console.log(res);
-        this.router.navigate(['/administrador/list']);
-      },
-      err => console.error(err)
-    );
   }
 
   updateGame() {

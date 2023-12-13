@@ -1,7 +1,7 @@
 <div class="col-md-4 offset-md-2">
     <div class="card">
         <div class="card-body text-center">
-            <form>
+            <form #myForm="ngForm">
                 <div class="form-group">
                     <input type="text" name="nombre" placeholder="Nombre" [(ngModel)]="clothe.nombre" class="form-control" >
                 </div>
@@ -9,10 +9,13 @@
                     <input type="text" name="Talla" placeholder="Talla" [(ngModel)]="clothe.talla" class="form-control" >
                 </div>
                 <div class="form-group">
-                    <input type="number" name="cantidad_existente" placeholder="Cantidad existentes" [(ngModel)]="clothe.cantidad_existente" class="form-control" >
+                    <input type="number" name="cantidad_existente" required placeholder="Cantidad existentes" [(ngModel)]="clothe.cantidad_existente" class="form-control" #CantInput="ngModel" >
                 </div>
                 <div class="form-group">
-                    <input type="number" name="precio" placeholder="Precio" [(ngModel)]="clothe.precio" class="form-control" >
+                    <input type="number" name="precio" required placeholder="Precio" [(ngModel)]="clothe.precio" class="form-control" #precioInput="ngModel" >
+                    <div *ngIf="precioInput.invalid || CantInput.invalid" class="text-danger">El precio es obligatorio</div>
+                    <div *ngIf="CantInput.invalid" class="text-danger">La cantidad del producto es obligatorio</div>
+
                 </div>
                 <br>
                 <div class="form-group">
@@ -32,8 +35,7 @@
 <div class="col-md">
     <div class="card card-body text-center">
         <img [src]="clothe.imagen_base64 == '' ? 'assets/defaultImage.jpg' : clothe.imagen_base64" class="card-img-top">
-        <h3>{{clothe.id}} - {{clothe.nombre == '' ? 'Prenda' : clothe.nombre}}</h3>
-        <p>{{clothe.categoria == '' ? 'Categoria' : clothe.categoria}}</p>
-        <p>{{clothe.precio == undefined ? 'Precio' : clothe.precio}}</p>
+        <h3>{{clothe.nombre == '' ? 'Prenda' : clothe.nombre}}</h3>
+        <p>$ {{clothe.precio == undefined ? 'Precio' : clothe.precio}}</p>
     </div>
 </div> 

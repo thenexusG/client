@@ -31,4 +31,8 @@ export class NavigationComponent implements OnInit {
   navigateList(){
     this.router.navigate(['/administrador/list']);  
   }
+
+  login(){
+    this.router.navigate(['/administrador']);  
+  }
 }

@@ -5,16 +5,16 @@ import {ClothesListComponent } from './component/clothes-list/clothes-list.compo
 import { ClothesFormComponent } from './component/clothes-form/clothes-form.component'
 import { LoginComponent } from './component/login/login.component'
 const routes: Routes = [
-  // {
-  //   path: '',
-  //   redirectTo: '/clothes',
-  //   pathMatch: 'full'
-  // },
   {
     path: '',
-    redirectTo: 'administrador/list',
+    redirectTo: '/clothes',
     pathMatch: 'full'
   },
+  // {
+  //   path: '',
+  //   redirectTo: 'administrador/list',
+  //   pathMatch: 'full'
+  // },
   {
     path: 'clothes',
     component: ClothesListComponent
