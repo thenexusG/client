@@ -12,7 +12,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./clothes-form.component.css']
 })
 export class ClothesFormComponent implements OnInit {
-
+  selectedFile: File | null = null;
+  
   myForm: FormGroup = this.formBuilder.group({
     precio: [null, [Validators.required, Validators.min(0)]], 
   });;
@@ -48,8 +49,8 @@ export class ClothesFormComponent implements OnInit {
 
   saveNewGame() {
     delete this.clothe.id;
-    this.submitted = true;
-    if (this.myForm.valid) {
+    console.log("PRENDA");
+    
       this.clothesService.saveClothe(this.clothe).subscribe(
         res => {
           console.log(res);
@@ -57,8 +58,6 @@ export class ClothesFormComponent implements OnInit {
         },
         err => console.error(err)
       );
-    }
-
   }
 
   updateGame() {
@@ -66,12 +65,12 @@ export class ClothesFormComponent implements OnInit {
   }
 
   onFileSelected(event: any): void {
-    const file: File = event.target.files[0];
+    const file = event.target.files[0];
 
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
-        this.clothe.imagen_base64 = reader.result;
+        this.clothe.imagen_base64 = reader.result as string;
         //console.log(reader.result);
         
       };

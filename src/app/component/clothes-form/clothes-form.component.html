@@ -13,17 +13,18 @@
                 </div>
                 <div class="form-group">
                     <input type="number" name="precio" required placeholder="Precio" [(ngModel)]="clothe.precio" class="form-control" #precioInput="ngModel" >
-                    <div *ngIf="precioInput.invalid || CantInput.invalid" class="text-danger">El precio es obligatorio</div>
-                    <div *ngIf="CantInput.invalid" class="text-danger">La cantidad del producto es obligatorio</div>
+                    <!-- <div *ngIf="precioInput.invalid || CantInput.invalid" class="text-danger">El precio es obligatorio</div>
+                    <div *ngIf="CantInput.invalid" class="text-danger">La cantidad del producto es obligatorio</div> -->
 
                 </div>
                 <br>
                 <div class="form-group">
-                    <input name="file" type="file" (change)="onFileSelected($event)" [ngModel]="clothe.imagen_base64">
+                    <input name="file" type="file" (change)="onFileSelected($event)">
                 </div>
                 <br>
                 <div class="d-grid gap-2 col-6 mx-auto">
-                    <button class="btn btn-success btn-block" (click)="edit == true ? updateGame() : saveNewGame()">
+                    <!-- <button class="btn btn-success btn-block" (click)="edit == true ? updateGame() : saveNewGame()"> -->
+                    <button class="btn btn-success btn-block" (click)="saveNewGame()"> 
                         Save
                     </button>
                 </div>
